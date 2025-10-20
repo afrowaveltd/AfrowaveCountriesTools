@@ -3,19 +3,18 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 
-namespace AfrowaveCountriesTools.Consolonia
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+namespace AfrowaveCountriesTools.Consolonia;
 
-        private void OnExit(object sender, RoutedEventArgs e)
-        {
-            var lifetime = Application.Current!.ApplicationLifetime as IControlledApplicationLifetime;
-            lifetime!.Shutdown();
-        }
-    }
+public partial class MainWindow : Window
+{
+	public MainWindow()
+	{
+		InitializeComponent();
+	}
+
+	private void OnExit(object sender, RoutedEventArgs e)
+	{
+		var lifetime = Application.Current!.ApplicationLifetime as IControlledApplicationLifetime;
+		lifetime!.Shutdown();
+	}
 }

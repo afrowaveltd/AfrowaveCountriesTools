@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="AfrowaveCountriesTools.Avalonia/AfrowaveCountriesTools.Avalonia.csproj" Id="92d5d868-08a2-4e2c-9467-09db8188892e" />
-  <Project Path="AfrowaveCountriesTools.Consolonia/AfrowaveCountriesTools.Consolonia.csproj" />
+  <Project Path="AfrowaveCountriesTools.Consolonia/AfrowaveCountriesTools.Consolonia.csproj" Id="0cea891a-511e-4304-a84e-050125ff0d1f" />
   <Project Path="AfrowaveCountriesTools.Shared/AfrowaveCountriesTools.Shared.csproj" Id="9a067478-3f5b-4a4c-8a43-20c31bd4343e" />
 </Solution>
