@@ -1,3 +1,4 @@
+using AfrowaveCountriesTools.Consolonia.ViewModels;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -15,7 +16,10 @@ public partial class App : Application
 	{
 		if(ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
 		{
-			desktopLifetime.MainWindow = new MainWindow();
+			desktopLifetime.MainWindow = new MainWindow()
+			{
+				DataContext = new MainWindowViewModel()
+			};
 		}
 
 		base.OnFrameworkInitializationCompleted();

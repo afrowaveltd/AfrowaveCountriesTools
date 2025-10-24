@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.ReactiveUI;
 using Consolonia;
 
 namespace AfrowaveCountriesTools.Consolonia;
@@ -14,6 +15,7 @@ public static class Program
 	public static AppBuilder BuildAvaloniaApp()
 	{
 		return AppBuilder.Configure<App>()
+			 .UseReactiveUI()
 			 .UseConsolonia()
 			 .UseAutoDetectedConsole()
 			 .LogToException();

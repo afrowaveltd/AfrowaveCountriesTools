@@ -5,7 +5,9 @@
              x:Class="AfrowaveCountriesTools.Consolonia.App"
              RequestedThemeVariant="Default">
 	<!-- remember to add: xmlns:local="using:MyNameSpace" -->
-
+	<Application.DataTemplates>
+		<local:ViewLocator />
+	</Application.DataTemplates>
 	<Application.Styles>
 		<console:ModernTheme />
 	</Application.Styles>

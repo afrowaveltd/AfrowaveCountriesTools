@@ -1,10 +1,11 @@
-﻿using ReactiveUI;
+﻿using Afrowave.CountriesTools.ReactiveUi.ViewModels;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace Afrowave.CountriesTools.ReactiveUi.ViewModels;
+namespace AfrowaveCountriesTools.Consolonia.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
