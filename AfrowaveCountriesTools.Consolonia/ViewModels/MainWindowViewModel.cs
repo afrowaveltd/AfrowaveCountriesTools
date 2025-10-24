@@ -1,5 +1,4 @@
-﻿using Afrowave.CountriesTools.ReactiveUi.ViewModels;
-using ReactiveUI;
+﻿using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,7 +27,7 @@ public class MainWindowViewModel : ViewModelBase
 				new FirstPageViewModel(),
 				new SecondPageViewModel(),
 				new ThirdPageViewModel()
-		  };
+	};
 
 	// The default is the first page
 	private PageViewModelBase _CurrentPage;
