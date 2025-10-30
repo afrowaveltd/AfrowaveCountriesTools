@@ -3,25 +3,82 @@ using AfrowaveCountriesTools.Shared.Models.Entities;
 
 namespace AfrowaveCountriesTools.Shared.Data;
 
+/// <summary>
+/// Entity Framework Core database context for the Countries domain.
+/// Defines entity sets and configures tables, keys, property constraints, and relationships.
+/// </summary>
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
+	/// <summary>
+	/// Countries (root aggregate) table.
+	/// </summary>
 	public DbSet<Country> Countries => Set<Country>();
+	/// <summary>
+	/// Country names (one-to-one with Country).
+	/// </summary>
 	public DbSet<CountryNameEntity> CountryNames => Set<CountryNameEntity>();
+	/// <summary>
+	/// Flags (one-to-one with Country).
+	/// </summary>
 	public DbSet<FlagEntity> Flags => Set<FlagEntity>();
+	/// <summary>
+	/// International Direct Dialing info (one-to-one with Country).
+	/// </summary>
 	public DbSet<IddInfoEntity> Idds => Set<IddInfoEntity>();
+	/// <summary>
+	/// IDD suffixes (one-to-many from IddInfo).
+	/// </summary>
 	public DbSet<IddSuffix> IddSuffixes => Set<IddSuffix>();
+	/// <summary>
+	/// Top-level domains for countries.
+	/// </summary>
 	public DbSet<CountryTld> CountryTlds => Set<CountryTld>();
+	/// <summary>
+	/// Capital cities for countries.
+	/// </summary>
 	public DbSet<CountryCapital> CountryCapitals => Set<CountryCapital>();
+	/// <summary>
+	/// Alternative spellings for countries.
+	/// </summary>
 	public DbSet<CountryAltSpelling> CountryAltSpellings => Set<CountryAltSpelling>();
+	/// <summary>
+	/// Bordering country references.
+	/// </summary>
 	public DbSet<CountryBorder> CountryBorders => Set<CountryBorder>();
+	/// <summary>
+	/// Latitude/longitude coordinates for countries.
+	/// </summary>
 	public DbSet<CountryCoordinate> CountryCoordinates => Set<CountryCoordinate>();
+	/// <summary>
+	/// Calling codes for countries.
+	/// </summary>
 	public DbSet<CountryCallingCode> CountryCallingCodes => Set<CountryCallingCode>();
+	/// <summary>
+	/// Languages spoken in countries.
+	/// </summary>
 	public DbSet<CountryLanguage> CountryLanguages => Set<CountryLanguage>();
+	/// <summary>
+	/// Translations of country names.
+	/// </summary>
 	public DbSet<CountryTranslation> CountryTranslations => Set<CountryTranslation>();
+	/// <summary>
+	/// Gendered demonyms for countries.
+	/// </summary>
 	public DbSet<CountryDemonym> CountryDemonyms => Set<CountryDemonym>();
+	/// <summary>
+	/// Currencies reference table.
+	/// </summary>
 	public DbSet<Currency> Currencies => Set<Currency>();
+	/// <summary>
+	/// Many-to-many join between Country and Currency.
+	/// </summary>
 	public DbSet<CountryCurrency> CountryCurrencies => Set<CountryCurrency>();
 
+	/// <summary>
+	/// Configures entity mappings using the Fluent API.
+	/// Sets table names, primary keys, property limits, and relationships including1:1,1:N, and M:N.
+	/// </summary>
+	/// <param name="modelBuilder">Model builder used to configure the model.</param>
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		base.OnModelCreating(modelBuilder);
