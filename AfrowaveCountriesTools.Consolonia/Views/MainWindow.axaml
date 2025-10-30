@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:console="https://github.com/jinek/consolonia"
         xmlns:local="clr-namespace:AfrowaveCountriesTools.Consolonia"
-		xmlns:vm="using:AfrowaveCountriesTools.Consolonia.ViewModels"
+		xmlns:vm="using:AfrowaveCountriesTools.Shared.ViewModels"
         RequestedThemeVariant="Dark"
         Title="Ukázka navigace"
 		x:CompileBindings="True"
