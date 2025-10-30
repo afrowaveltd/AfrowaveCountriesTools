@@ -1,8 +1,9 @@
 using AfrowaveCountriesTools.Consolonia.ViewModels;
+using AfrowaveCountriesTools.Shared.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AfrowaveCountriesTools.Consolonia;
 
@@ -15,10 +16,12 @@ public partial class App : Application
 
 	public override void OnFrameworkInitializationCompleted()
 	{
-		var collection = new ServiceCollection();
-		collection.AddCommonServices();
-		var services = collection.BuildServiceProvider();
-		var vm = services.GetRequiredService<MainWindowViewModel>();
+		var host = HostBuilderFactory.BuildHost(configureServices: (ctx, services) =>
+		{
+			services.AddTransient<MainWindowViewModel>();
+		});
+
+		var vm = host.Services.GetRequiredService<MainWindowViewModel>();
 
 		if(ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
 		{

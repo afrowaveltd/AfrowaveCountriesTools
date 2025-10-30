@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
+
+ <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
     One for Windows with net8.0-windows TFM, one for MacOS with net8.0-macos and one with net8.0 TFM for Linux.-->
@@ -14,16 +15,11 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.3.8" />
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.14.28" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0-rc.2.25502.107" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0-rc.2.25502.107">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="10.0.0-rc.2.25502.107" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0-rc.2.25502.107">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0-rc.2.25502.107" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-rc.2.25502.107" />
   </ItemGroup>
 

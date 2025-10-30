@@ -1,10 +1,9 @@
 ﻿using Afrowave.CountriesTools.ReactiveUi.ViewModels;
-using Afrowave.CountriesTools.ReactiveUi.Views;
-
+using AfrowaveCountriesTools.Shared.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Afrowave.CountriesTools.ReactiveUi;
 
@@ -17,17 +16,18 @@ public partial class App : Application
 
 	public override void OnFrameworkInitializationCompleted()
 	{
-		var collection = new ServiceCollection();
-		collection.AddCommonServices();
+		var host = HostBuilderFactory.BuildHost(configureServices: (ctx, services) =>
+		{
+			services.AddTransient<MainWindowViewModel>();
+		});
 
-		var services = collection.BuildServiceProvider();
-		var vm = services.GetRequiredService<MainWindowViewModel>();
+		var vm = host.Services.GetRequiredService<MainWindowViewModel>();
 
 		if(ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
 		{
-			desktop.MainWindow = new MainWindow
+			desktop.MainWindow = new Views.MainWindow
 			{
-				DataContext = vm
+				DataContext = vm,
 			};
 		}
 

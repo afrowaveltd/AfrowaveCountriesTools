@@ -6,12 +6,13 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace AfrowaveCountriesTools.Shared.Services;
 
 public static class HostBuilderFactory
 {
-	public static IHost BuildHost(string[]? args = null)
+	public static IHost BuildHost(string[]? args = null, Action<HostBuilderContext, IServiceCollection>? configureServices = null)
 	{
 		var builder = Host.CreateDefaultBuilder(args ?? [])
 			 .ConfigureAppConfiguration(cfg =>
@@ -23,7 +24,7 @@ public static class HostBuilderFactory
 			 .ConfigureServices((ctx, services) =>
 			 {
 				 var cs = ctx.Configuration.GetConnectionString("Default")
-								?? "Data Source=./data/app.db";
+						?? "Data Source=./data/app.db";
 
 				 // EF Core (SQLite) přes DbContextFactory
 				 services.AddDbContextFactory<ApplicationDbContext>(opt =>
@@ -34,6 +35,9 @@ public static class HostBuilderFactory
 
 				 // Tvoje služby / repozitáře
 				 services.AddScoped<IUserRepository, UserRepository>();
+
+				 // Allow startup projects to register their own services (e.g., ViewModels)
+				 configureServices?.Invoke(ctx, services);
 			 });
 
 		var host = builder.Build();
@@ -48,7 +52,7 @@ public static class HostBuilderFactory
 	{
 		using var scope = host.Services.CreateScope();
 		var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
-		var ensureMigrations = config.GetValue("EfCore:ApplyMigrationsAtStartup", true);
+		var ensureMigrations = config.GetSection("EfCore").GetValue<bool>("ApplyMigrationsAtStartup", true);
 
 		Directory.CreateDirectory("./data");
 
@@ -57,7 +61,7 @@ public static class HostBuilderFactory
 
 		if(ensureMigrations)
 		{
-			db.Database.Migrate();     // použije migrace, pokud existují
+			db.Database.Migrate(); // použije migrace, pokud existují
 		}
 		else
 		{
